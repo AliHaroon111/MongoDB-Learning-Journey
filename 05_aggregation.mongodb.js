@@ -8,7 +8,13 @@ use('ecommerce')
 //     { _id: 5, item: "Mango",  price: 15, quantity: 3, category: "Fruit" }
 // ]); //comment it after first run
 
+// db.sales.aggregate([
+//     { $match : {'category': 'Fruit' } },
+//     { $project : {_id: 0, item: 1, quantity:1}},
+// ])
+
 db.sales.aggregate([
-    { $match : {'category': 'Fruit' } },
-    { $project : {_id: 0, item: 1, quantity:1}},
+    { $group : { _id : "$category",
+        totalSales : { $sum : { $multiply : [ "$price", "$quantity" ] } }
+     }},
 ])
