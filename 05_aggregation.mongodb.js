@@ -18,3 +18,15 @@ db.sales.aggregate([
         totalSales : { $sum : { $multiply : [ "$price", "$quantity" ] } }
      }},
 ])
+
+//  lookup
+db.products.aggregate([
+    {
+        $lookup: {
+            from: "contacts", // The collection to join with
+            localField: "category", // Field from the `products` collection
+            foreignField: "message", // Field from the `contacts` collection
+            as: "relatedContacts" // The name of the output array field
+        }
+    }
+])
