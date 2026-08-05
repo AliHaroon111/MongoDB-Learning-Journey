@@ -48,3 +48,18 @@ db.users.aggregate([
         $limit: 5
     }
 ])
+
+// Below the Group and sum or more 
+
+//  Question : Find the total number of males and females
+
+db.users.aggregate([
+    {
+        $group: {
+          _id: "$gender",
+          genderCount: {
+            $sum: 1
+          }
+        }
+    }
+])
