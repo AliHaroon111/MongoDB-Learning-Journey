@@ -96,3 +96,30 @@ db.users.aggregate([
         }
     },
 ])
+
+
+// What is the Average number of tags per user??
+
+db.users.aggregate([
+  {
+    $unwind: { // you will get tags one by one (i separate document) but the user is Same for all
+      path: "$tags",
+    }
+  },
+  {
+    $group: {
+      _id: "$_id",
+    numberOfTags: {
+      $sum: 1  
+    }
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      averageNumberOfTags: {
+        $avg: "$numberOfTags"
+      }
+    }
+  }
+])
