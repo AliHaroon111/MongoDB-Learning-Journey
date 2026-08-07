@@ -16,3 +16,16 @@ db.users.aggregate([
       }}
     }
   ])
+
+  
+  // Below alter Professional way
+  db.users.aggregate([
+    {
+        $match: {
+        tags: "enim"
+    }
+    },
+    {
+        $count: 'UserWithEnimTags'
+    }
+  ])
