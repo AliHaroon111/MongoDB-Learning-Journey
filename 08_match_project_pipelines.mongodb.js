@@ -29,3 +29,23 @@ db.users.aggregate([
         $count: 'UserWithEnimTags'
     }
   ])
+
+
+  // Question : What are the names and age of users who are inactive and have 'valit' as a tag??
+
+//   just try
+db.users.aggregate([
+    {
+        $match: {
+          $and: [
+            { tags: "velit" },
+            { isActive: false }
+          ]
+        }
+      },
+    {$project: {
+      name:1,
+      age:1
+    }}
+   
+  ])
