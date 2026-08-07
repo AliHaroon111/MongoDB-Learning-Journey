@@ -49,3 +49,18 @@ db.users.aggregate([
     }}
    
   ])
+
+// Below alter Professional way - for above question
+ db.users.aggregate( [
+    {
+      $match: {
+          isActive: false,
+          tags: "velit"
+      }
+    },
+    {$project: {
+      name:1,
+      age:1
+    }}
+   
+  ])
