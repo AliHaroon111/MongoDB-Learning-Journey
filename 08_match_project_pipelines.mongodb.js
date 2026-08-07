@@ -50,7 +50,7 @@ db.users.aggregate([
    
   ])
 
-// Below alter Professional way - for above question
+// Below alter Professional way - for above question - , used for==> AND opr
  db.users.aggregate( [
     {
       $match: {
@@ -64,3 +64,16 @@ db.users.aggregate([
     }}
    
   ])
+
+
+//   Questions : How many users have a phone number starting with '+1 (940)'?
+db.users.aggregate([
+    {
+    $match: {
+        "company.phone" : /^\+1 \(940\)/  //this is the Regex
+    }
+    },
+    {
+        $count: 'UsersWithGivenPhineNumber'
+    }
+])
