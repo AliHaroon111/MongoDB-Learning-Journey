@@ -44,3 +44,14 @@ db.users.aggregate([
     {$count: 'AdAsSecondTag'}
   
   ])
+
+  
+  // Question : Find user who have both 'enim' and 'id' as their tags.
+
+  // $all give document based on specified field
+  db.users.aggregate([
+    {
+      $match: {
+        "tags": { $all: ["enim", "id"]}}
+    },
+  ])
