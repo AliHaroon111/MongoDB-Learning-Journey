@@ -74,6 +74,6 @@ db.users.aggregate([
     }
     },
     {
-        $count: 'UsersWithGivenPhineNumber'
+        $count: 'UsersWithGivenPhoneNumber'
     }
 ])
