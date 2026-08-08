@@ -32,3 +32,15 @@ db.users.aggregate([
     },
   
   ])
+
+  // Question : How many user have 'ad' as the second tag in the list of their tags?
+
+  db.users.aggregate([
+    {
+      $match: {
+        "tags.1": "ad"  // this is the syntax
+      }
+    },
+    {$count: 'AdAsSecondTag'}
+  
+  ])
