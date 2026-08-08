@@ -19,3 +19,16 @@ db.users.aggregate([
       }
     }
   ])
+
+
+  // Question : Categorize users by their favorite fruit.
+
+  db.users.aggregate([
+    {
+      $group: {
+        _id: "$favoriteFruit",
+        Users: { $push: "$name"}
+      }
+    },
+  
+  ])
