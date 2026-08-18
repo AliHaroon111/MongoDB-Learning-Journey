@@ -17,3 +17,24 @@ db.books.aggregate([
       }
     }
   ]) //localField and foreignField do not have to have the same name, +++===---> but the data inside them must match in value and data type
+
+
+// Same as Above - But in proffesional way with 
+
+db.books.aggregate([
+    {
+      $lookup: {
+        from: "authors",
+        localField: "author_id",
+        foreignField: "_id",
+        as: "author_details"
+      }
+    },
+    {
+      $addFields: {
+        author_details: {
+            $arrayElemAt: ["$author_details",0]
+        }
+      }
+    }
+  ])
