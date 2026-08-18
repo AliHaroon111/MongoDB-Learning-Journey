@@ -55,3 +55,21 @@ db.users.aggregate([
         "tags": { $all: ["enim", "id"]}}
     },
   ])
+
+  // Question : List all the companies located in USA with their corresponding user count.
+  db.users.aggregate([
+    {
+      $match: {
+      	"company.location.country": "USA"
+      }
+    },
+  {
+    $group: {
+      _id: "$company.title",
+      userCount: {
+        $sum: 1
+      }
+    }
+  }
+  
+  ])
